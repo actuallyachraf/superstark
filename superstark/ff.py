@@ -90,7 +90,7 @@ class FiniteField:
 
     def inv(self, operand: FieldElement) -> FieldElement:
         a, b, g = xgcd(operand.value, self.p)
-        return FieldElement(a, self)
+        return FieldElement(((a % self.p) + self.p) % self.p, self)
 
     def div(self, l: FieldElement, r: FieldElement) -> FieldElement:
         assert not r.is_zero()

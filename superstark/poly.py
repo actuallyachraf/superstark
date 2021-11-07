@@ -3,7 +3,7 @@ Poly: Implementation of Univariate and Multivariate Polynomials on Finite Fields
 """
 
 from typing import List
-from ff import FieldElement
+from superstark.ff import FieldElement
 
 
 class Univariate:
@@ -149,7 +149,7 @@ class Univariate:
                 prod = (
                     prod
                     * (x - Univariate([domain[j]]))
-                    * Univariate([(domain[i] - domain[j]).inverse()])
+                    * Univariate([(domain[i] - domain[j]).inv()])
                 )
             acc = acc + prod
         return acc
