@@ -1,6 +1,7 @@
 """
 Merkle: Implementation of Merkle Trees over Blake2
 """
+from typing import List, Any
 from hashlib import blake2b
 
 
@@ -57,11 +58,11 @@ class Merkle:
 
     # The following functions expose the API and compute hashes of leafs before
     # calling the underlying code.
-    def commit(leafs):
+    def commit(leafs: List[Any]):
         return Merkle.commit_([Merkle.H(bytes(leaf)).digest() for leaf in leafs])
 
-    def open(index, leafs):
+    def open(index: int, leafs: List[Any]):
         return Merkle.open_(index, [Merkle.H(bytes(leaf)).digest() for leaf in leafs])
 
-    def verify(root, index, path, leaf):
+    def verify(root: bytes, index: int, path: List[List[Any]], leaf: List[Any]):
         return Merkle.verify_(root, index, path, Merkle.H(bytes(leaf)).digest())
